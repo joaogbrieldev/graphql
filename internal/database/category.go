@@ -7,7 +7,7 @@ import (
 )
 
 type Category struct {
-	Id          string
+	ID          string
 	Name        string
 	Description string
 	db          *sql.DB
@@ -23,7 +23,7 @@ func (c *Category) Create(name string, description string) (Category, error) {
 	if err != nil {
 		return Category{}, err
 	}
-	return Category{Id: id, Name: name, Description: description}, nil
+	return Category{ID: id, Name: name, Description: description}, nil
 }
 
 func (c *Category) FindAll() ([]Category, error) {
@@ -37,7 +37,7 @@ func (c *Category) FindAll() ([]Category, error) {
 	for rows.Next() {
 		var cat Category
 		var description sql.NullString
-		if err := rows.Scan(&cat.Id, &cat.Name, &description); err != nil {
+		if err := rows.Scan(&cat.ID, &cat.Name, &description); err != nil {
 			return nil, err
 		}
 		cat.Description = description.String

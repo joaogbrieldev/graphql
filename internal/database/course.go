@@ -8,7 +8,7 @@ import (
 
 type Course struct {
 	db *sql.DB
-	Id          string
+	ID          string
 	Name        string
 	Description string
 	CategoryID  string
@@ -25,7 +25,7 @@ func (c *Course) Create(name string, description string, categoryID string) (*Co
 		return nil, err
 	}
 	return &Course{
-		Id: id, 
+		ID: id, 
 		Name: name, 
 		Description: description, 
 		CategoryID: categoryID,
@@ -43,7 +43,7 @@ func (c *Course) FindAll() ([]Course, error) {
 	for rows.Next() {
 		var course Course
 		var description sql.NullString
-		if err := rows.Scan(&course.Id, &course.Name, &description); err != nil {
+		if err := rows.Scan(&course.ID, &course.Name, &description); err != nil {
 			return nil, err
 		}
 		course.Description = description.String
